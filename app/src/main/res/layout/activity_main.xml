@@ -12,19 +12,63 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:gravity="center">
+        android:gravity="center"
+        android:orientation="vertical"
+        android:background="#004D40">
 
         <TextView
+            android:id="@+id/txvFlash"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="FLASH"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:textSize="28sp"
+            />
 
         <Button
             android:id="@+id/btnFlash"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="#003D30"
+            android:padding="50dp"
+            android:elevation="10dp"
             android:text="Encender"
+            android:textColor="#FFFFFF"
             android:textSize="26sp" />
 
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:background="#BF360C">
+
+    <Button
+            android:id="@+id/btnCounter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#DD2C00"
+            android:padding="50dp"
+            android:elevation="10dp"
+            android:text="Iniciar Contador"
+            android:textColor="#FFFFFF"
+            android:textSize="26sp" />
+
+        <TextView
+            android:id="@+id/txvCounter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="CONTEO"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:textSize="28sp"
+            />
     </LinearLayout>
 
 </LinearLayout>
