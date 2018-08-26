@@ -18,11 +18,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements UpdateCounterServiceListener{
 
-    Intent serviceIntent;
+    Intent flashServiceIntent;
+    Intent counterServiceIntent;
     private android.widget.Button btnFlash;
+    private android.widget.Button btnCounter;
+    private TextView tvCounter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +34,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         this.btnFlash = (Button) findViewById(R.id.btnFlash);
+        this.btnCounter = (Button) findViewById(R.id.btnCounter);
+        this.tvCounter = (TextView) findViewById(R.id.txvCounter);
+
+        CounterService.setUpdateCounterListener(MainActivity.this);
 
         btnFlash.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -37,6 +45,13 @@ public class MainActivity extends AppCompatActivity {
                 if (checkCameraPermission()) {
                     launchFlashService();
                 }
+            }
+        });
+
+        btnCounter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                launchCounterService();
             }
         });
     }
@@ -82,13 +97,29 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void launchFlashService() {
-        serviceIntent = new Intent(MainActivity.this, FlashService.class);
+        flashServiceIntent = new Intent(MainActivity.this, FlashService.class);
         if (btnFlash.getText().equals("Encender")) {
-            startService(serviceIntent);
+            startService(flashServiceIntent);
             btnFlash.setText("Apagar");
         } else {
-            stopService(serviceIntent);
+            stopService(flashServiceIntent);
             btnFlash.setText("Encender");
         }
+    }
+
+    private void launchCounterService(){
+        counterServiceIntent = new Intent(MainActivity.this, CounterService.class);
+        if(btnCounter.getText().equals("Comenzar")){
+            startService(counterServiceIntent);
+            btnCounter.setText("Detener");
+        } else {
+            stopService(counterServiceIntent);
+            btnCounter.setText("Comenzar");
+        }
+    }
+
+    @Override
+    public void updateCounter(int counter) {
+        tvCounter.setText("CONTEO: " + counter);
     }
 }

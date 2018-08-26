@@ -55,7 +55,7 @@
             android:background="#DD2C00"
             android:padding="50dp"
             android:elevation="10dp"
-            android:text="Iniciar Contador"
+            android:text="Comenzar"
             android:textColor="#FFFFFF"
             android:textSize="26sp" />
 
